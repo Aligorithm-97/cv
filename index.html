@@ -1,255 +1,466 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CV - Algorithm</title>
     <style>
-        /* Base */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+      /* Base */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: Calibri, Arial, sans-serif;
+        font-size: 10pt;
+        line-height: 1.15;
+        color: #000;
+        background: #f5f5f5;
+        padding: 16px;
+      }
+
+      .page {
+        width: 210mm;
+        min-height: 297mm;
+        margin: 0 auto;
+        background: #fff;
+        padding: 10mm; /* printable margins */
+        box-shadow: 0 0 0.8mm rgba(0, 0, 0, 0.2);
+        overflow: hidden;
+      }
+
+      .header {
+        text-align: center;
+        margin-bottom: 20px;
+        font-size: 16pt;
+        font-weight: bold;
+        padding-bottom: 15px;
+        border-bottom: 2px solid #333;
+      }
+
+      .section-title {
+        font-size: 11pt;
+        font-weight: bold;
+        margin-top: 12px;
+        margin-bottom: 8px;
+        border-bottom: 1px solid #000;
+        padding-bottom: 3px;
+        letter-spacing: 0.2px;
+        text-transform: uppercase;
+      }
+
+      .skills-grid {
+        display: block;
+        margin-bottom: 6px;
+      }
+      .skill-item {
+        margin-bottom: 4px;
+        line-height: 1.4;
+      }
+
+      .experience-item {
+        margin-bottom: 16px;
+        padding: 8px 0;
+      }
+      .job-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 8px;
+        font-size: 10.5pt;
+      }
+      .job-title {
+        font-weight: bold;
+        font-size: 10.5pt;
+        margin-bottom: 0;
+      }
+      .company {
+        font-weight: bold;
+        font-size: 10.5pt;
+        margin-bottom: 0;
+      }
+      .location-date {
+        font-size: 9pt;
+        color: #333;
+        margin-bottom: 0;
+        font-style: italic;
+        text-align: right;
+      }
+
+      .project-links {
+        margin: 8px 0 6px;
+        font-weight: bold;
+        color: #0066cc;
+      }
+      .project-links a {
+        color: #0066cc;
+        text-decoration: none;
+        margin-left: 6px;
+      }
+      .project-links a:hover {
+        text-decoration: underline;
+      }
+
+      .bullet-points {
+        margin-left: 20px;
+        margin-top: 6px;
+      }
+      .bullet-points li {
+        margin-bottom: 6px;
+        line-height: 1.3;
+      }
+
+      .education-item {
+        margin-bottom: 12px;
+        padding: 8px 0;
+      }
+      .degree {
+        font-weight: bold;
+        margin-bottom: 2px;
+      }
+      .university {
+        font-weight: bold;
+        margin-bottom: 2px;
+      }
+      .projects-list li {
+        margin-bottom: 8px;
+        line-height: 1.3;
+      }
+
+      .export-buttons {
+        position: fixed;
+        top: 16px;
+        right: 16px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        z-index: 1000;
+      }
+      .export-btn {
+        padding: 8px 12px;
+        background: #0066cc;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 12px;
+        font-weight: bold;
+      }
+      .export-btn:hover {
+        background: #0052a3;
+      }
+
+      /* Print rules */
+      @page {
+        size: A4;
+        margin: 10mm;
+      }
+      @media print {
         body {
-            font-family: Calibri, Arial, sans-serif;
-            font-size: 10pt;       
-            line-height: 1.15;      
-            color: #000;
-            background: #f5f5f5;
-            padding: 16px;
+          background: #fff;
+          padding: 0;
         }
-
-        .page {
-            width: 210mm;
-            min-height: 297mm;
-            margin: 0 auto;
-            background: #fff;
-            padding: 10mm;          /* printable margins */
-            box-shadow: 0 0 0.8mm rgba(0,0,0,0.2);
-            overflow: hidden;
-        }
-
-        .header {
-            text-align: center;
-            margin-bottom: 10px;
-            font-size: 16pt;
-            font-weight: bold;
-        }
-
-        .section-title {
-            font-size: 11pt;
-            font-weight: bold;
-            margin-top: 8px;
-            margin-bottom: 6px;
-            border-bottom: 1px solid #000;
-            padding-bottom: 2px;
-            letter-spacing: 0.2px;
-        }
-
-        .skills-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 6px 12px;
-            margin-bottom: 6px;
-        }
-        .skill-item { margin-bottom: 2px; }
-
-        .experience-item { margin-bottom: 8px; }
-        .job-title { font-weight: bold; font-size: 10.5pt; }
-        .company { font-weight: bold; font-size: 10.5pt; }
-        .location-date { font-size: 9pt; color: #333; margin-bottom: 3px; }
-
-        .project-links { margin: 2px 0 3px; }
-        .project-links a { color: #0066cc; text-decoration: none; margin-left: 6px; }
-        .project-links a:hover { text-decoration: underline; }
-
-        .bullet-points { margin-left: 16px; }
-        .bullet-points li { margin-bottom: 3px; }
-
-        .education-item { margin-bottom: 6px; }
-        .degree { font-weight: bold; }
-        .university { font-weight: bold; }
-        .projects-list li { margin-bottom: 4px; }
-
         .export-buttons {
-            position: fixed;
-            top: 16px;
-            right: 16px;
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-            z-index: 1000;
+          display: none;
         }
-        .export-btn {
-            padding: 8px 12px;
-            background: #0066cc;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 12px;
-            font-weight: bold;
+        .page {
+          box-shadow: none;
+          margin: 0;
+          padding: 0;
+          width: auto;
+          min-height: auto;
         }
-        .export-btn:hover { background: #0052a3; }
-
-        /* Print rules */
-        @page { size: A4; margin: 10mm; }
-        @media print {
-            body { background: #fff; padding: 0; }
-            .export-buttons { display: none; }
-            .page { box-shadow: none; margin: 0; padding: 0; width: auto; min-height: auto; }
-        }
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div class="export-buttons">
-        <button class="export-btn" onclick="exportToPDF()">Export to PDF</button>
-        <button class="export-btn" onclick="exportToDOC()">Export to DOC</button>
+      <button class="export-btn" onclick="exportToPDF()">Export to PDF</button>
+      <button class="export-btn" onclick="exportToDOC()">Export to DOC</button>
     </div>
 
     <div id="cv" class="page">
-        <div class="header">
-            <div style="font-size: 20pt; font-weight: bold; margin-bottom: 8px;">ALİ TEMURTAŞ</div>
-            <div style="font-size: 10pt; margin-bottom: 15px;">
-                LinkedIn | 505-370-25-07 | https://aligorithm.dev | atemurtas97@gmail.com | GitHub
-            </div>
+      <div class="header">
+        <div style="font-size: 20pt; font-weight: bold; margin-bottom: 12px">
+          ALİ TEMURTAŞ
         </div>
-
-        <div style="text-align: center; font-size: 16pt; font-weight: bold; margin-bottom: 15px;">CV</div>
-
-        <div class="section-title">Skills ____________________________________________________________________________________________</div>
-        <div class="skills-grid">
-            <div class="skill-item">• Java | Spring Boot | JavaScript | TypeScript | MSSQL | Node.js | Express.js | React | Redux | Angular| Next.js| Docker | Redis</div>
-            <div class="skill-item">• AWS| Nginx | IIS |Microservices | Frontend | Backend | Full-Stack | NoSQL | English, Turkish – All professional proficiency or above</div>
+        <div style="font-size: 10pt; margin-bottom: 8px; line-height: 1.4">
+          <a
+            href="https://www.linkedin.com/in/ali-temurtas/"
+            target="_blank"
+            style="color: #0066cc; text-decoration: none"
+            >LinkedIn</a
+          >
+          |
+          <a
+            href="tel:+905053702507"
+            target="_blank"
+            style="color: #0066cc; text-decoration: none"
+            >+90 505-370-25-07</a
+          >
+          |
+          <a
+            href="https://aligorithm.dev"
+            target="_blank"
+            style="color: #0066cc; text-decoration: none"
+            >https://aligorithm.dev</a
+          >
+          |
+          <a
+            href="mailto:atemurtas97@gmail.com"
+            target="_blank"
+            style="color: #0066cc; text-decoration: none"
+            >atemurtas97@gmail.com</a
+          >
+          |
+          <a
+            href="https://github.com/aligorithm-97"
+            target="_blank"
+            style="color: #0066cc; text-decoration: none"
+            >GitHub</a
+          >
         </div>
+      </div>
 
-        <div class="section-title">Experience _______________________________________________________________________________________</div>
-        <div class="experience-item">
+      <div class="section-title">
+        Skills
+        ____________________________________________________________________________________________
+      </div>
+      <div class="skills-grid">
+        <div class="skill-item">
+          Java | Spring Boot | JavaScript | TypeScript | MSSQL | Node.js |
+          Express.js | React | Redux | Angular | Next.js | Docker | Redis | AWS
+          | Nginx | IIS | Microservices | Frontend | Backend | Full-Stack |
+          NoSQL | English, Turkish – All professional proficiency or above
+        </div>
+      </div>
+
+      <div class="section-title">
+        Experience
+        _______________________________________________________________________________________
+      </div>
+      <div class="experience-item">
+        <div class="job-header">
+          <div style="display: flex; gap: 20px">
             <div class="job-title">Full-Stack Developer</div>
             <div class="company">Innova</div>
-            <div class="location-date">Ankara, Türkiye 03/2022 - Current</div>
-
-            <div class="project-links">
-                <strong>ITOOLS</strong> 04/2022 – 01/2023
-                <a href="#" onclick="return false;">Live</a> | 
-                <a href="#" onclick="return false;">GitHub</a>
-            </div>
-            <ul class="bullet-points">
-                <li>Delivered ITOOLS, a comprehensive full-stack web application, in January 2023 after 9 months of solo development. The application was designed to streamline subcontractor progress payments, replacing outdated Excel-based workflows, and provides secure data storage with a robust tracking system.</li>
-                <li>Built with React (frontend), Express.js (backend), IIS, and SQL Server (database), utilizing a JWT refresh token mechanism and interceptors to generate a new token every 10 minutes, thereby enhancing system security and ensuring seamless authentication.</li>
-                <li>Managed payments exceeding $2 million, streamlining financial operations with improved accuracy.</li>
-                <li>Successfully adopted by users: Since its launch in January 2023, ITOOLS has been actively used by over 100 daily users.</li>
-            </ul>
-
-            <div class="project-links">
-                <strong>ITTS</strong> 09/2023 –
-                <a href="#" onclick="return false;">Live</a> | 
-                <a href="#" onclick="return false;">GitHub</a>
-            </div>
-            <ul class="bullet-points">
-                <li>Built and deployed a scalable system integrating React, Spring Boot, Nginx, Docker, Redis, and SQL Server, automating subcontractor offer evaluation and reducing Excel usage by 95%.</li>
-                <li>Automated subcontractor offer evaluation, replacing manual Excel-based workflows, resulting in increased operational efficiency and reduced errors.</li>
-                <li>Resolved N+1 Query Problem through optimized join queries and lazy loading, reducing database load and query execution number by 80%.</li>
-                <li>Orchestrated the deployment of ITTS using 3 Docker containers and Nginx, managing the entire deployment process. Collaborated with the company's IT team to resolve port conflicts and ensure seamless communication across services, configuring Docker networking for optimal performance.</li>
-                <li>Enhanced user experience with Redis caching, significantly improving application response times and task efficiency.</li>
-            </ul>
+          </div>
+          <div class="location-date">Ankara, Türkiye 03/2022 - Current</div>
         </div>
 
-        <div class="experience-item">
+        <div class="project-links">
+          <strong>ITOOLS</strong> 04/2022 – 01/2023
+          <a
+            href="https://www.itools.com.tr/"
+            target="_blank"
+            style="color: #0066cc; text-decoration: none"
+            >Live</a
+          >
+          |
+          <a
+            href="https://github.com/Aligorithm-97/Itools-Alt-Yuklenici-Is-Hakedis-Modulu"
+            target="_blank"
+            style="color: #0066cc; text-decoration: none"
+            >GitHub</a
+          >
+        </div>
+        <ul class="bullet-points">
+          <li>
+            Delivered ITOOLS, a comprehensive full-stack web application, in
+            January 2023 after 9 months of solo development. The application was
+            designed to streamline subcontractor progress payments, replacing
+            outdated Excel-based workflows, and provides secure data storage
+            with a robust tracking system.
+          </li>
+          <li>
+            Built with React (frontend), Express.js (backend), IIS, and SQL
+            Server (database), utilizing a JWT refresh token mechanism and
+            interceptors to generate a new token every 10 minutes, thereby
+            enhancing system security and ensuring seamless authentication.
+          </li>
+          <li>
+            Managed payments exceeding $2 million, streamlining financial
+            operations with improved accuracy.
+          </li>
+          <li>
+            Successfully adopted by users: Since its launch in January 2023,
+            ITOOLS has been actively used by over 100 daily users.
+          </li>
+        </ul>
+
+        <div class="project-links">
+          <strong>ITTS</strong> 09/2023 –
+          <a href="#" onclick="return false;">Live</a> |
+          <a href="#" onclick="return false;">GitHub</a>
+        </div>
+        <ul class="bullet-points">
+          <li>
+            Built and deployed a scalable system integrating React, Spring Boot,
+            Nginx, Docker, Redis, and SQL Server, automating subcontractor offer
+            evaluation and reducing Excel usage by 95%.
+          </li>
+          <li>
+            Automated subcontractor offer evaluation, replacing manual
+            Excel-based workflows, resulting in increased operational efficiency
+            and reduced errors.
+          </li>
+          <li>
+            Resolved N+1 Query Problem through optimized join queries and lazy
+            loading, reducing database load and query execution number by 80%.
+          </li>
+          <li>
+            Orchestrated the deployment of ITTS using 3 Docker containers and
+            Nginx, managing the entire deployment process. Collaborated with the
+            company's IT team to resolve port conflicts and ensure seamless
+            communication across services, configuring Docker networking for
+            optimal performance.
+          </li>
+          <li>
+            Enhanced user experience with Redis caching, significantly improving
+            application response times and task efficiency.
+          </li>
+        </ul>
+      </div>
+
+      <div class="experience-item">
+        <div class="job-header">
+          <div style="display: flex; gap: 20px">
             <div class="job-title">Software Engineer, Intern</div>
             <div class="company">Netas</div>
-            <div class="location-date">Ankara, Türkiye 07/2019 - 08/2019</div>
-            <ul class="bullet-points">
-                <li>Contributed to the MEB Smart Board Payment System (Fatih Project) as a Full Stack Developer in a team of 5 interns and 1 lead engineer, creating a web interface to streamline payments and meet Ministry of National Education goals.</li>
-            </ul>
+          </div>
+          <div class="location-date">Ankara, Türkiye 07/2019 - 08/2019</div>
         </div>
+        <ul class="bullet-points">
+          <li>
+            Contributed to the MEB Smart Board Payment System (Fatih Project) as
+            a Full Stack Developer in a team of 5 interns and 1 lead engineer,
+            creating a web interface to streamline payments and meet Ministry of
+            National Education goals.
+          </li>
+        </ul>
+      </div>
 
-        <div class="section-title">Education ________________________________________________________________________________________</div>
-        <div class="education-item">
+      <div class="section-title">
+        Education
+        ________________________________________________________________________________________
+      </div>
+      <div class="education-item">
+        <div class="job-header">
+          <div style="display: flex; gap: 20px">
             <div class="degree">Bachelor of Science</div>
             <div class="university">ATILIM University</div>
-            <div class="location-date">Ankara, Türkiye 08/2016 - 01/2022</div>
-            <ul class="bullet-points">
-                <li>Bachelor's Degree in Information Systems Engineering</li>
-            </ul>
+          </div>
+          <div class="location-date">Ankara, Türkiye 08/2016 - 01/2022</div>
         </div>
-
-        <div class="section-title">Projects __________________________________________________________________________________________</div>
-        <ul class="projects-list">
-            <li>Designed Spring Boot Advanced Starter Pack with pre-configured integrations, including database connections, Spring Security with JWT (refresh token mechanism), email services, and Aspect-Oriented Programming (AOP) for logging. The starter pack will be available as a Maven/Gradle dependency in 2025, significantly accelerating development and enabling developers to quickly adapt projects with minimal configuration adjustments.</li>
-            <li>Engineered VoiceSpace, a real-time voice communication platform enabling users to join virtual rooms, collaborate, and communicate seamlessly. Optimized the system to deliver low-latency audio streaming, achieving an average delay of less than 100ms, ensuring a smooth and responsive user experience.</li>
-            <li>Created GluteNot, a platform for gluten-free diet users to easily search and discover gluten-free products. I'm still developing the platform and plan to deploy it on AWS EC2 in 2025 for scalability and reliability.</li>
+        <ul class="bullet-points">
+          <li>Bachelor's Degree in Information Systems Engineering</li>
         </ul>
+      </div>
+
+      <div class="section-title">
+        Projects
+        __________________________________________________________________________________________
+      </div>
+      <ul class="projects-list">
+        <li>
+          Designed Spring Boot Advanced Starter Pack with pre-configured
+          integrations, including database connections, Spring Security with JWT
+          (refresh token mechanism), email services, and Aspect-Oriented
+          Programming (AOP) for logging. The starter pack will be available as a
+          Maven/Gradle dependency in 2025, significantly accelerating
+          development and enabling developers to quickly adapt projects with
+          minimal configuration adjustments.
+        </li>
+        <li>
+          Engineered VoiceSpace, a real-time voice communication platform
+          enabling users to join virtual rooms, collaborate, and communicate
+          seamlessly. Optimized the system to deliver low-latency audio
+          streaming, achieving an average delay of less than 100ms, ensuring a
+          smooth and responsive user experience.
+        </li>
+        <li>
+          Created GluteNot, a platform for gluten-free diet users to easily
+          search and discover gluten-free products. I'm still developing the
+          platform and plan to deploy it on AWS EC2 in 2025 for scalability and
+          reliability.
+        </li>
+      </ul>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
     <script>
-        function mmToPx(mm) { return mm * 3.7795275591; }
+      function mmToPx(mm) {
+        return mm * 3.7795275591;
+      }
 
-        function createScaledA4Clone() {
-            const source = document.getElementById('cv');
-            const clone = source.cloneNode(true);
+      function createScaledA4Clone() {
+        const source = document.getElementById("cv");
+        const clone = source.cloneNode(true);
 
-            // Prepare a fixed-size A4 wrapper
-            const pageWidthPx = mmToPx(210 - 20);  // A4 width minus margins (10mm each)
-            const pageHeightPx = mmToPx(297 - 20); // A4 height minus margins
+        // Prepare a fixed-size A4 wrapper
+        const pageWidthPx = mmToPx(210 - 20); // A4 width minus margins (10mm each)
+        const pageHeightPx = mmToPx(297 - 20); // A4 height minus margins
 
-            // Ensure measurement at target width
-            clone.style.width = pageWidthPx + 'px';
-            clone.style.minHeight = 'auto';
-            clone.style.padding = '0';
-            clone.style.margin = '0';
-            clone.style.boxShadow = 'none';
-            clone.classList.remove('page');
+        // Ensure measurement at target width
+        clone.style.width = pageWidthPx + "px";
+        clone.style.minHeight = "auto";
+        clone.style.padding = "0";
+        clone.style.margin = "0";
+        clone.style.boxShadow = "none";
+        clone.classList.remove("page");
 
-            // Put into a hidden container to measure height correctly
-            const measurer = document.createElement('div');
-            measurer.style.position = 'fixed';
-            measurer.style.left = '-10000px';
-            measurer.style.top = '0';
-            measurer.style.width = pageWidthPx + 'px';
-            measurer.appendChild(clone);
-            document.body.appendChild(measurer);
+        // Put into a hidden container to measure height correctly
+        const measurer = document.createElement("div");
+        measurer.style.position = "fixed";
+        measurer.style.left = "-10000px";
+        measurer.style.top = "0";
+        measurer.style.width = pageWidthPx + "px";
+        measurer.appendChild(clone);
+        document.body.appendChild(measurer);
 
-            const actualHeight = clone.scrollHeight;
-            const scale = Math.min(1, pageHeightPx / actualHeight);
+        const actualHeight = clone.scrollHeight;
+        const scale = Math.min(1, pageHeightPx / actualHeight);
 
-            // Build export wrapper
-            const wrapper = document.createElement('div');
-            wrapper.style.width = pageWidthPx + 'px';
-            wrapper.style.height = pageHeightPx + 'px';
-            wrapper.style.overflow = 'hidden';
-            wrapper.style.background = '#fff';
+        // Build export wrapper
+        const wrapper = document.createElement("div");
+        wrapper.style.width = pageWidthPx + "px";
+        wrapper.style.height = pageHeightPx + "px";
+        wrapper.style.overflow = "hidden";
+        wrapper.style.background = "#fff";
 
-            // Apply scale
-            clone.style.transformOrigin = 'top left';
-            clone.style.transform = 'scale(' + scale + ')';
+        // Apply scale
+        clone.style.transformOrigin = "top left";
+        clone.style.transform = "scale(" + scale + ")";
 
-            wrapper.appendChild(clone);
+        wrapper.appendChild(clone);
 
-            // Cleanup measurer (wrapper contains cloned node now)
-            document.body.removeChild(measurer);
+        // Cleanup measurer (wrapper contains cloned node now)
+        document.body.removeChild(measurer);
 
-            return { wrapper, scale };
-        }
+        return { wrapper, scale };
+      }
 
-        function exportToPDF() {
-            const { wrapper } = createScaledA4Clone();
+      function exportToPDF() {
+        const { wrapper } = createScaledA4Clone();
 
-            const opt = {
-                margin: 0,
-                filename: 'CV_Algorithm.pdf',
-                image: { type: 'jpeg', quality: 0.98 },
-                html2canvas: { scale: 2, useCORS: true, backgroundColor: '#ffffff' },
-                jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
-                pagebreak: { mode: ['avoid-all'] }
-            };
+        const opt = {
+          margin: 0,
+          filename: "CV_Algorithm.pdf",
+          image: { type: "jpeg", quality: 0.98 },
+          html2canvas: { scale: 2, useCORS: true, backgroundColor: "#ffffff" },
+          jsPDF: { unit: "mm", format: "a4", orientation: "portrait" },
+          pagebreak: { mode: ["avoid-all"] },
+        };
 
-            html2pdf().set(opt).from(wrapper).save();
-        }
+        html2pdf().set(opt).from(wrapper).save();
+      }
 
-        function exportToDOC() {
-            const page = document.getElementById('cv');
-            // Inline a minimal CSS for Word to keep layout and one-page size
-            const wordCss = `
+      function exportToDOC() {
+        const page = document.getElementById("cv");
+        // Inline a minimal CSS for Word to keep layout and one-page size
+        const wordCss = `
                 @page { size: A4; margin: 10mm; }
                 body { font-family: Calibri, Arial, sans-serif; font-size:10pt; line-height:1.15; }
                 .header { text-align:center; font-size:16pt; font-weight:bold; margin-bottom:10px; }
@@ -260,14 +471,16 @@
                 .bullet-points li { margin-bottom: 3px; }
             `;
 
-            const docHtml = `<!DOCTYPE html>
+        const docHtml = `<!DOCTYPE html>
 <html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word" xmlns="http://www.w3.org/TR/REC-html40">
 <head><meta charset="utf-8"><title>CV</title><style>${wordCss}</style></head>
 <body>${page.innerHTML}</body></html>`;
 
-            const blob = new Blob(['\ufeff', docHtml], { type: 'application/msword' });
-            saveAs(blob, 'CV_Algorithm.doc');
-        }
+        const blob = new Blob(["\ufeff", docHtml], {
+          type: "application/msword",
+        });
+        saveAs(blob, "CV_Algorithm.doc");
+      }
     </script>
-</body>
-</html> 
+  </body>
+</html>
